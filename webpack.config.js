@@ -1,3 +1,4 @@
+const { clear } = require('console');
 const path = require('path');
 
 module.exports = {
@@ -8,6 +9,7 @@ module.exports = {
     // "./src/script/index.js",
     output: {
         path: path.resolve(__dirname, 'dist'),
-        // filename: ''
+        filename: 'main.js',
+        clean: true
     }
 }

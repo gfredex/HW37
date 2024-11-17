@@ -2,7 +2,7 @@ const { clear } = require('console');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { title } = require('process');
-// const { Template } = require('webpack');
+const { Template } = require('webpack');
 
 module.exports = {
     entry: {
@@ -27,8 +27,24 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: "webpack test",
             template: path.resolve(__dirname, "src", "index.html")
-        })
+        }),
     ],
-    mode: "development",
-    // mode: "production",
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: ['css-loader']
+            },
+            {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            },
+            {
+                test: /\.(png|jp?g|gif|svg)$/i,
+                use: [{ loader: 'file-loader' }]
+            }
+        ]
+    },
+    // mode: "development",
+    mode: "production",
 }
